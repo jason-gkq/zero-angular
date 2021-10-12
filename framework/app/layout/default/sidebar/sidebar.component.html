@@ -1,0 +1,17 @@
+<div class="aside-inner">
+    <div class="item user-block" *ngIf="settings.layout.sidebarUser">
+        <div class="user-block-picture">
+            <div class="user-block-status">
+                <img class="img-thumbnail img-circle" [src]="settings.user.avatar || 'assets/img/user/null.jpg'" alt="Avatar" />
+            </div>
+        </div>
+        <div class="user-block-info" *ngIf="!settings.layout.collapsed">
+            <span class="user-block-name" style="font-size: 13px">{{settings.user.name}}</span>
+            <span class="user-block-name">当前：{{auth.currentGroupInfo.groupName}}</span>
+            <span class="user-block-role notice" (click)="routerService.goTo('/common/workBench/storeSwitch')">切换店铺/集团</span>
+            <span class="user-block-role" *ngFor="let role of auth.getCurrentRole()">{{role.roleName}}</span>
+            <span class="user-block-role notice" (click)="userService.logout()">退出</span>
+        </div>
+    </div>
+    <sidebar-menu class="d-block py-lg"></sidebar-menu>
+</div>

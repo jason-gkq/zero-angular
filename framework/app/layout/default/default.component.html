@@ -1,0 +1,12 @@
+<div class="wrapper theme-default">
+    <div class="router-progress-bar" *ngIf="isFetching"></div>
+    <app-header class="header"></app-header>
+    <app-sidebar class="aside"></app-sidebar>
+    <section class="content">
+        <!--<reuse-tab></reuse-tab>-->
+        <router-outlet></router-outlet>
+    </section>
+    <!--<global-footer [links]="links">-->
+        <!--Copyright <i nz-icon nzType="copyright" nzTheme="outline"></i> {{fDate}}  by 乐车邦. All Rights Reserved.-->
+    <!--</global-footer>-->
+</div>

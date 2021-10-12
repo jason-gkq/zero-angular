@@ -1,0 +1,50 @@
+.img-cropper-container{
+    width: 486px;
+    position: relative;
+    border: 1px dashed #d9d9d9;
+    transition: border-color 0.3s;
+    padding: 16px;
+    float: left;
+    .img-to-crop{
+        background: #f2f2f5;
+        // background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAAA3NCSVQICAjb4U/gAAAABlBMVEXMzMz////TjRV2AAAACXBIWXMAAArrAAAK6wGCiw1aAAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAABFJREFUCJlj+M/AgBVhF/0PAH6/D/HkDxOGAAAAAElFTkSuQmCC");
+        height: 300px;
+        width: 300px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .img-cropper-controls{
+        padding: 0px 8px;
+        margin-top:20px;
+    }
+    .img-cropper-previewer{
+        width: 200px;
+        max-height: 200px;
+        overflow: hidden;
+    }
+    .previewContainer {
+        height: 300px;
+        padding-left: 25px;
+        border-left: 1px dashed #d9d9d9;
+        .previewBg {
+            height: 100px;
+            width: 100px;
+            background-color: #f2f2f5;
+        }
+    }
+    &.is-round{
+        ::ng-deep .cropper-view-box,.cropper-face {
+            border-radius: 50%;
+        }
+    }
+    .margin-b-0 {
+        margin-bottom:0;
+        line-height: 39px;
+    }
+}
+.overview {
+    float: left;
+    overflow: hidden;
+}

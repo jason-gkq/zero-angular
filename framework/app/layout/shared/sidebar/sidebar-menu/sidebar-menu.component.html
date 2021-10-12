@@ -1,0 +1,50 @@
+<ul [nzMode]="'inline'" [nzTheme]="menuTheme" nz-menu [nzInlineCollapsed]="settings.layout.collapsed">
+    <li nz-submenu *ngFor="let group of list" [(nzOpen)]="group._open" (nzOpenChange)="collapsAnother(group['__id'],$event)">
+        <span title>
+            <div nz-row>
+                <div nz-col [nzSpan]="4" style="width:24px;">
+                    <ng-container *ngIf="group.icon && group.icon.length > 0">
+                        <img [src]="'https://lcbqiniu.lechebangstatic.com/common/nav_icons/'+group.icon" alt="" width="16px"
+                            height="16px" style="min-width: 16px; margin-top: -3.5px;">
+                    </ng-container>
+                    <ng-container *ngIf="!group.icon || group.icon.length == 0">
+                        <i nz-icon nzType="appstore" nzTheme="outline"></i>
+                    </ng-container>
+                </div>
+                <div nz-col [nzSpan]="20" style="width: 118px;" *ngIf="!settings.layout.collapsed">
+                    <span>{{group.text}}</span>
+                </div>
+            </div>
+        </span>
+        <ul>
+            <ng-container *ngFor="let child1 of group.children">
+                <li nz-submenu *ngIf="child1.children.length > 0" [(nzOpen)]="child1._open">
+                    <span title>{{child1.text}}</span>
+                    <ul>
+                        <ng-container *ngFor="let child2 of child1.children">
+                            <li nz-submenu *ngIf="child2.children.length > 0" [(nzOpen)]="child2._open">
+                                <span title>{{child2.text}}</span>
+
+                                <ul>
+                                    <ng-container *ngFor="let child3 of child2.children">
+                                        <li nz-menu-item (click)="handleNavigate(child3.link, child3)" [nzSelected]="child3._open">
+                                            <span title>{{child3.text}}</span>
+                                        </li>
+                                    </ng-container>
+                                </ul>
+                            </li>
+
+                            <li nz-menu-item *ngIf="child2.children.length === 0" (click)="handleNavigate(child2.link, child2)" [nzSelected]="child2._open">
+                                <span>{{child2.text}}</span>
+                            </li>
+                        </ng-container>
+                    </ul>
+                </li>
+
+                <li nz-menu-item *ngIf="child1.children.length === 0" (click)="handleNavigate(child1.link, child1)" [nzSelected]="child1._open">
+                    <span title>{{child1.text}}</span>
+                </li>
+            </ng-container>
+        </ul>
+    </li>
+</ul>

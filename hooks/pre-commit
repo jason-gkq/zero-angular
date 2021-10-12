@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# $?表示前一个指令的返回码，没有前一个指令则默认为0
+# 如果前一个指令的返回码为0，则继续执行下一个lint检查
+# 否则用1退出，会终止commit操作
+
+if [ $? -eq 0 ];then
+node "./.git/hooks/tslint-hook.js"
+else
+exit 1
+fi

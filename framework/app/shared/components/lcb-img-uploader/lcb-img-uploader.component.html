@@ -1,0 +1,13 @@
+<div class="lcb-img-uploader">
+    <nz-upload nzType="drag" nzMultiple="true" [nzDisabled]="nzDisabled" [nzFileList]="imgList" (nzFileListChange)="handleImgListChange($event)"
+        (nzChange)="handleOnChange($event)" nzListType="picture-card" [nzCustomRequest]="customRequest"
+        [nzBeforeUpload]="beforeUpload" [nzRemove]="handleRemove" [nzPreview]="handlePreview">
+        <div [style.opacity]="imgList.length === 0 ?'1':'0'">
+            <p class="ant-upload-drag-icon">
+                <i nz-icon nzType="plus" nzTheme="outline"></i>
+            </p>
+            <p class="ant-upload-text">将图片拖入该区域或点击该区域</p>
+            <p class="ant-upload-hint">（支持jpg,png,jpeg,gif格式，大小不能超过{{maxSize}}M，最多可上传{{maxLength}}张照片）</p>
+        </div>
+    </nz-upload>
+</div>

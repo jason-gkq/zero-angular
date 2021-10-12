@@ -1,0 +1,66 @@
+:host {
+    ::ng-deep {
+        ul {
+            padding: 0;
+        }
+    }
+}
+
+.car-picker {
+    height: 560px;
+    padding-right: 20px;
+    overflow-y: auto;
+}
+
+.picker-container {
+    display: flex;
+    min-height: 100%;
+
+    .tree-picker {
+        flex: 1;
+        .search-input {
+            margin-bottom: 16px;
+        }
+    }
+
+    .picked-result {
+        flex: 1;
+
+        .title {
+            margin-bottom: 16px;
+            font-size: 16px;
+            color: #999;
+        }
+
+        .picked-list {
+            &>.item {
+                position: relative;
+                padding-top: 6px;
+                padding-bottom: 6px;
+                padding-right: 32px;
+                &>.icon {
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    width: 20px;
+                    height: 20px;
+                    margin: auto 0;
+                    line-height: 21px;
+                    text-align: center;
+                    cursor: pointer;
+                    &:hover {
+                        color: #f5222d;
+                    }
+                    &>i {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.car-list {
+    margin-left: 30px;
+}

@@ -1,0 +1,38 @@
+:host ::ng-deep .lcb-img-uploader{
+    min-width: 600px;
+    nz-upload{
+        display: block;
+        position: relative;
+        border: 1px dashed #d9d9d9;
+        transition: border-color 0.3s;
+        cursor: pointer;
+        border-radius: 4px;
+        text-align: center;
+        width: 100%;
+        min-block-size: 150px;
+        background: #fafafa;
+
+        .ant-upload-drag{
+            z-index: 1;
+            background-color: rgba(0, 0, 0, 0);
+            border: none;
+            padding: 0;
+            width: 100%;
+            position: absolute;
+        }
+
+        nz-upload-list{
+            float: none;
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
+            padding: 16px;
+            .ant-upload-list-item{
+                .ant-upload-list-item-info::before {
+                        left: 0;
+                }
+            }
+        }
+    }
+
+}

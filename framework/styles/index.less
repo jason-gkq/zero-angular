@@ -1,0 +1,270 @@
+// 建议所有项目自定义样式放在该文件夹下
+@media (min-width: 768px) {
+    .aside-collapsed .aside {
+        width: 64px;
+    }
+
+    .ant-menu-inline-collapsed {
+        width: 64px;
+    }
+
+    .ant-menu-inline-collapsed>.ant-menu-submenu>.ant-menu-submenu-title {
+        left         : 0;
+        text-overflow: clip;
+        padding      : 0 22px !important;
+    }
+}
+
+.has-reuse-tab .content {
+    margin-top: 52px;
+}
+
+@media (min-width: 768px) {
+    .content {
+        margin-left: 224px;
+    }
+
+    .theme-a .content {
+        margin: 52px 24px 24px 24px;
+    }
+}
+
+/*header font set*/
+//theme-default
+.hidden-xs {
+    color: #ffffff !important;
+}
+
+nz-dropdown a {
+    color: #ffffff !important;
+}
+
+//theme-a
+.theme-a {
+
+    .item,
+    .hidden-xs,
+    nz-dropdown a {
+        color: rgba(0, 0, 0, 0.65) !important;
+    }
+}
+
+.opt-button {
+    margin: 20px 0 10px;
+
+    button {
+        margin-right: 15px;
+    }
+}
+
+// nz-tablezhen针对操作的处理
+//.th-operation {
+//min-width: 101px;
+//}
+// nz-table
+.ant-table-thead>tr>th,
+.ant-table-tbody>tr>td {
+    //padding: 8px 3px !important;
+    word-break: inherit;
+}
+
+.hover-show {
+    * {
+        visibility: hidden;
+    }
+}
+
+// 列表搜索块
+.form-block {
+    background: #fbfbfb;
+    padding   : 16px;
+}
+
+.cropper-view-box {
+    outline: 2px solid #39f;
+}
+
+.cropper-face {
+    opacity: 0.4;
+}
+
+// theme-a
+.theme-a {
+    .content__title {
+        padding      : 16px 24px 0px;
+        margin-bottom: 16px;
+    }
+
+    // 搜索区
+    .search-card {
+        .ant-card-body {
+            padding: 16px 24px 0px;
+        }
+
+        .search__form {
+            margin-bottom: 0px;
+        }
+
+        .search-label {
+            text-align: left;
+
+            label {
+                font-size: 12px;
+            }
+        }
+
+        .ant-form-item {
+            margin-bottom: 16px;
+            height       : 26px;
+
+            .ant-form-item-label {
+                line-height: 26px;
+            }
+
+            .ant-form-item-control {
+                line-height: 26px;
+            }
+        }
+
+        // 下拉
+        .ant-select {
+            font-size: 12px;
+        }
+
+        // 文本框
+        .ant-input {
+            font-size  : 12px;
+            line-height: 22px;
+        }
+
+        // 搜索操作
+        .search-operation {
+            text-align   : right;
+            margin-bottom: 10px;
+            flex-grow    : 1;
+            max-width    : 100%;
+        }
+
+        // 日期选择器
+        .ant-picker-input>input {
+            font-size  : 12px;
+            line-height: 22px;
+        }
+    }
+
+    // 搜索展示区
+    .search-list-card {
+        .ant-card-body {
+            padding: 16px 24px;
+        }
+
+        table tbody {
+            font-size: 12px;
+        }
+
+    }
+
+    // 导航
+    .ant-breadcrumb {
+        font-size: 12px;
+    }
+
+    // header
+    .top-nav-wrap {
+        font-size: 12px;
+    }
+
+    .ant-layout-header {
+        height     : 48px;
+        line-height: 48px;
+    }
+}
+
+// 搜索区下拉字体调整
+.search-dropdown {
+    font-size: 12px;
+}
+
+// form输入描述
+nz-form-control {
+    .description {
+        font-size  : 13px;
+        color      : rgba(0, 0, 0, 0.5);
+        line-height: 1.5;
+        clear      : both;
+    }
+
+    .ant-upload-picture-card-wrapper {
+        display: block;
+    }
+}
+
+.lcb-description {
+    font-size  : 13px;
+    color      : rgba(0, 0, 0, 0.5);
+    line-height: 1.5;
+    clear      : both;
+}
+
+.lcb-error {
+    clear     : both;
+    min-height: 22px;
+    margin-top: -2px;
+    color     : #f5222d;
+    ;
+    font-size  : 14px;
+    line-height: 1.5;
+    transition : color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+// theme-default 样式
+.theme-default {
+
+    // 搜索区
+    .search-card {
+        .ant-card-body {
+            padding: 24px 24px 0px;
+        }
+
+        .search__form {
+            margin-bottom: 0px;
+        }
+
+        .ant-form-item-label {
+            line-height: 40px;
+        }
+
+        .ant-form-item {
+            // margin-bottom: 16px;
+
+            .ant-form-item-control {
+                line-height: 40px;
+            }
+        }
+
+        // 搜索操作
+        .search-operation {
+            text-align   : right;
+            height       : 40px;
+            line-height  : 40px;
+            flex-grow    : 1;
+            margin-bottom: 24px;
+            max-width    : 100%;
+        }
+    }
+
+}
+
+// 列表操作中button与nz-alert处于同一行
+.lcb-btn-alert {
+    display: flex;
+    margin-bottom: 12px;
+    nz-alert {
+        flex-grow  : 1;
+        margin-left: 24px;
+    }
+
+    .ant-alert {
+        height: 32px;
+    }
+}

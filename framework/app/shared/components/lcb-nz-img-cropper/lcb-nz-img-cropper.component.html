@@ -1,0 +1,23 @@
+<nz-upload (nzChange)="coverListchange($event)" [nzAccept]="'.jpg,.jpeg,.png,.gif'" nzListType="picture-card"
+    [(nzFileList)]="imgList" [nzShowButton]="imgList.length < maxNum" [nzBeforeUpload]="beforeUpload"
+    [nzShowUploadList]="isQiniuUpload?true:showConfig" [nzPreview]="handlePreview">
+    <i nz-icon nzType="plus" nzTheme="outline"></i>
+    <div class="ant-upload-text">点击上传</div>
+</nz-upload>
+
+<ng-template #modalContent>
+    <div nz-row class="img-cropper-container">
+        <div #cropperContainer nz-col nzSpan="15" class="img-to-crop">
+        </div>
+        <div nz-col nzSpan="8" nzPush="1" class="previewContainer">
+            <p class="margin-b-0">预览：</p>
+            <div class="preview"></div>
+            <div class="previewBg"></div>
+        </div>
+    </div>
+</ng-template>
+
+<nz-modal [nzVisible]="previewVisible" [nzTitle]="'图片预览'"
+    (nzOnCancel)="previewVisible = false">
+    <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+</nz-modal>

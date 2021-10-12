@@ -1,0 +1,12 @@
+<div class="select-tag-container">
+    <nz-select nzMode="tags" [(ngModel)]="listOfTagOptions" [nzPlaceHolder]="placeholder" nzAllowClear="true"
+        [nzSize]="size" [nzMaxTagCount]="maxTagCount" (ngModelChange)="tagsChange()">
+        <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value">
+        </nz-option>
+    </nz-select>
+    <i nz-icon nzType="edit" nzTheme="outline" class="edit-icon" nz-tooltip nzTooltipTitle="点击可批量复制搜索内容"
+        (click)="openModel()"></i>
+</div>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="请填写数据（每行一个值）" (nzOnCancel)="isVisible=false" (nzOnOk)="handleOk()">
+    <textarea rows="15" nz-input [(ngModel)]="inputValue"></textarea>
+</nz-modal>

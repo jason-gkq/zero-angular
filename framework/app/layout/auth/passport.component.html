@@ -1,0 +1,30 @@
+<div *ngIf="env.manufacturer != 'chebaba'" class="app-desktop" [ngStyle]="{'background-image': 'login-bg-' + env.appCode | translate }">
+    <!-- 4S店管理后台 -->
+    <div class="login_container">
+        <div class="login_wrap">
+            <div class="login_title">{{'loginTitle-' + env.appCode | translate }}</div>
+            <div>
+                <router-outlet></router-outlet>
+            </div>
+
+            <div class="login_right">
+                <!-- Copyright &copy; {{fDate}} by 乐车邦. All Rights Reserved. -->
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="env.manufacturer == 'chebaba'" class="app-desktop" [ngStyle]="{'background-image': 'login-bg-' + env.appCode | translate }">
+    <!-- 4S店管理后台 -->
+    <div class="login_container login_container_chebaba">
+        <div class="login_wrap_chebaba">
+            <div class="login_title">{{'loginTitle-' + env.appCode | translate }}</div>
+            <div>
+                <router-outlet></router-outlet>
+            </div>
+
+            <div class="login_right">
+                <!-- Copyright &copy; {{fDate}} by 乐车邦. All Rights Reserved. -->
+            </div>
+        </div>
+    </div>
+</div>

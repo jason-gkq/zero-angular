@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <base href="/">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="description" content="乐车邦">
+    <meta name="keywords" content="乐车邦">
+    <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
+    <!-- Apple Touch Icon -->
+    <!-- <link rel="apple-touch-icon" href="custom-icon.png"> -->
+    <style type="text/css">
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #49a9ee;
+            z-index: 9999;
+            transition: opacity .65s
+        }
+
+        .preloader-hidden-add {
+            opacity: 1;
+            display: block
+        }
+
+        .preloader-hidden-add-active {
+            opacity: 0
+        }
+
+        .preloader-hidden {
+            display: none
+        }
+
+        .cs-loader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%
+        }
+
+        .cs-loader-inner {
+            transform: translateY(-50%);
+            top: 50%;
+            position: absolute;
+            width: 100%;
+            color: #fff;
+            text-align: center
+        }
+
+        .cs-loader-inner label {
+            font-size: 20px;
+            opacity: 0;
+            display: inline-block
+        }
+
+        @keyframes lol {
+            0% {
+                opacity: 0;
+                transform: translateX(-300px)
+            }
+
+            33% {
+                opacity: 1;
+                transform: translateX(0)
+            }
+
+            66% {
+                opacity: 1;
+                transform: translateX(0)
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateX(300px)
+            }
+        }
+
+        .cs-loader-inner label:nth-child(6) {
+            animation: lol 3s infinite ease-in-out
+        }
+
+        .cs-loader-inner label:nth-child(5) {
+            animation: lol 3s .1s infinite ease-in-out
+        }
+
+        .cs-loader-inner label:nth-child(4) {
+            animation: lol 3s .2s infinite ease-in-out
+        }
+
+        .cs-loader-inner label:nth-child(3) {
+            animation: lol 3s .3s infinite ease-in-out
+        }
+
+        .cs-loader-inner label:nth-child(2) {
+            animation: lol 3s .4s infinite ease-in-out
+        }
+
+        .cs-loader-inner label:nth-child(1) {
+            animation: lol 3s .5s infinite ease-in-out
+        }
+    </style>
+    <style>
+        .alert-panel {
+            background-color: #49a9ee;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            padding: 60px;
+            font-size: 36px;
+            color: white;
+        }
+
+        .download-btn {
+            display: block;
+            width: 200px;
+            height: 60px;
+            font-size: 20px;
+            background: white;
+            line-height: 60px;
+            border-radius: 10px;
+            margin: 20px auto;
+        }
+
+        .notification-panel {
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            background-color: wheat;
+            color: #000;
+            text-align: center;
+        }
+
+        #download-link {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="preloader">
+        <div class="cs-loader">
+            <div class="cs-loader-inner">
+                <label> ●</label>
+                <label> ●</label>
+                <label> ●</label>
+                <label> ●</label>
+                <label> ●</label>
+                <label> ●</label>
+            </div>
+        </div>
+    </div>
+    <div class="udesk-call"></div>
+
+    <script>
+        // 给body加主题
+        if (location.href.includes('yundian')) {
+            document.querySelector('body').className = 'theme-chebaba';
+        }
+        var userAgent = navigator.userAgent,
+            rMsie = /(msie\s|trident.*rv:)([\w.]+)/,
+            rFirefox = /(firefox)\/([\w.]+)/,
+            rOpera = /(opera).+version\/([\w.]+)/,
+            rChrome = /(chrome)\/([\w.]+)/,
+            rSafari = /version\/([\w.]+).*(safari)/;
+        var browser;
+        var version;
+        var ua = userAgent.toLowerCase();
+
+        function uaMatch(ua) {
+            var match = rMsie.exec(ua);
+            if (match != null) {
+                return {
+                    browser: "IE",
+                    version: match[2] || "0"
+                };
+            }
+            var match = rFirefox.exec(ua);
+            if (match != null) {
+                return {
+                    browser: match[1] || "",
+                    version: match[2] || "0"
+                };
+            }
+            var match = rOpera.exec(ua);
+            if (match != null) {
+                return {
+                    browser: match[1] || "",
+                    version: match[2] || "0"
+                };
+            }
+            var match = rChrome.exec(ua);
+            if (match != null) {
+                return {
+                    browser: match[1] || "",
+                    version: match[2] || "0"
+                };
+            }
+            var match = rSafari.exec(ua);
+            if (match != null) {
+                return {
+                    browser: match[2] || "",
+                    version: match[1] || "0"
+                };
+            }
+            if (match != null) {
+                return {
+                    browser: "",
+                    version: "0"
+                };
+            }
+        }
+
+        var blackList = [
+            'IE 10.0',
+            'IE 9.0',
+            'IE 8.0',
+            'IE 7.0',
+            'IE 6.0',
+        ]
+        var whiteList = [
+            'Chrome',
+            'Sogou Explorer',
+            'Internet Explorer 11.0',
+            'Edge'
+        ]
+
+        var browserMatch = uaMatch(userAgent.toLowerCase());
+        if (browserMatch.browser) {
+            browser = browserMatch.browser;
+            version = browserMatch.version;
+            for (var i = 0; i < blackList.length; i++) {
+                if (blackList[i] == browser + " " + version) {
+                    replaceView();
+                }
+            }
+            if (browser === 'Chrome') {
+                if (Number(version) < 48) {
+                    replaceView();
+                }
+            } else {
+
+            }
+            // if (blackList.indexOf(browser + " " + version) !== -1) {
+            //     replaceView();
+            // } else if (browser === 'Chrome') {
+            //     if (Number(version) < 48) {
+            //         replaceView();
+            //     }
+            // } else {
+            //     // addNotification();
+            // }
+        }
+
+        function replaceView() {
+            var body = document.getElementsByTagName('body')[0];
+            body.innerHTML = null;
+            var alertDiv = document.createElement('div');
+            alertDiv.innerHTML =
+                '<p>商家后台已全新升级，暂不支持本浏览器</p><p>请点击下方按钮下载谷歌浏览器安装后即可登录使用</p>';
+            alertDiv.className = 'alert-panel';
+
+            var downloadBtn = document.createElement('a');
+            downloadBtn.innerHTML = '下载Chrome';
+            downloadBtn.href = './assets/ChromeSetup.exe';
+            downloadBtn.className = 'download-btn';
+
+            var downloadLink = document.createElement('a');
+            downloadLink.innerHTML = '去百度下载Chrome';
+            downloadLink.href =
+                'https://www.baidu.com/s?ie=utf-8&f=3&rsv_bp=1&rsv_idx=1&tn=baidu&wd=%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8B%E8%BD%BD&oq=%25E8%25B0%25B7%25E6%25AD%258C%25E6%25B5%258F%25E8%25A7%2588%25E5%2599%25A8&rsv_pq=c41374fe00025bd5&rsv_t=150eIwm62sp0AplFiGJRH%2BYscyVMV8kcK5BDrOVHzS9d0fJ0f9e518wB9dk&rqlang=cn&rsv_enter=1&inputT=2658&rsv_sug3=8&rsv_sug1=8&rsv_sug7=100&bs=%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8'
+            downloadLink.className = 'download-btn';
+
+            alertDiv.appendChild(downloadBtn);
+            alertDiv.appendChild(downloadLink);
+            body.appendChild(alertDiv);
+        }
+
+        function addNotification() {
+            var body = document.getElementsByTagName('body')[0];
+            var notificationDiv = document.createElement('div');
+            notificationDiv.innerHTML = '<p>商家后台已全新升级，当前浏览器版本过低，可能会导致部分功能无法使用，<a>请点击下载谷歌浏览器安装后即可登录使用</a></p>'
+            notificationDiv.className = 'notification-panel'
+            body.insertBefore(notificationDiv, document.querySelector('app-root'));
+        }
+
+    </script>
+    <app-root></app-root>
+</body>
+
+</html>

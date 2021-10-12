@@ -1,0 +1,133 @@
+<form nz-form [formGroup]="form" role="form">
+    <nz-form-item>
+        <nz-col [nzSpan]="12">
+            <div style="font-size: 20px; line-height: 20px;">忘记密码</div>
+        </nz-col>
+        <nz-col [nzSpan]="12" class="text-right">
+            <a class="forgot" [routerLink]="['/user/login']" style="line-height: 20px;">返回登录</a>
+        </nz-col>
+    </nz-form-item>
+    <nz-alert nzType="error" *ngIf="form.hasError('all')" [nzMessage]="nzDescriptionTpl">
+        <ng-template #nzDescriptionTpl>
+            <div *ngFor="let e of form.getError('all')"><i nz-icon nzType="close-circle" nzTheme="outline"></i> {{e}}</div>
+        </ng-template>
+    </nz-alert>
+    <nz-form-item>
+        <nz-form-control [nzErrorTip]="mobileErrorTipTpl">
+            <nz-input-group nzSize="large" [nzPrefix]="mobilePrefixTpl">
+                <input nz-input formControlName="mobile" placeholder="请输入手机号码">
+            </nz-input-group>
+            <ng-template #mobilePrefixTpl>
+                <i nz-icon nzType="user" nzTheme="outline"></i>
+            </ng-template>
+            <ng-template #mobileErrorTipTpl let-control>
+                <ng-container *ngIf="mobile.hasError('required')">
+                    请输入手机号码！
+                </ng-container>
+                <ng-container *ngIf="mobile.hasError('pattern')">
+                    手机号码有误！
+                </ng-container>
+                <ng-container *ngIf="mobile.hasError('mobile')">
+                    {{form.get('mobile').errors['mobile']}}
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-control [nzErrorTip]="passwordErrorTipTpl">
+            <nz-input-group nzSize="large" [nzPrefix]="pwdPrefixTpl" [nzSuffix]="pwdTemplate">
+                <input nz-input [type]="pwdVisible?'text':'password'" formControlName="password" placeholder="请输入新密码">
+            </nz-input-group>
+            <ng-template #pwdPrefixTpl>
+                <i nz-icon nzType="lock" nzTheme="outline"></i>
+            </ng-template>
+            <ng-template #pwdTemplate>
+                <i nz-icon  class="pointer" [nzType]="pwdVisible ? 'eye-invisible' : 'eye'" (click)="pwdVisible = !pwdVisible"></i>
+            </ng-template>
+            <ng-template #passwordErrorTipTpl let-control>
+                <ng-container *ngIf="password.hasError('required')">
+                    请输入新密码！
+                </ng-container>
+                <ng-container *ngIf="password.hasError('pattern')">
+                    请输入包含数字，字母，符号中任意2种类型的8位及以上密码，例如：abc123456
+                </ng-container>
+                <ng-container *ngIf="password.hasError('password')">
+                    {{form.get('password').errors['password']}}
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-control  [nzErrorTip]="confirmPasswordErrorTipTpl">
+            <nz-input-group nzSize="large" [nzPrefix]="conPwdPrefixTpl" [nzSuffix]="confirmPwdTemplate">
+                <input nz-input [type]="confirmPwdVisible?'text':'password'" formControlName="confirmPassword" validateEqual [anotherStr]="form.value.password" [ignoreCase]="false" placeholder="请输入确认密码">
+            </nz-input-group>
+            <ng-template #conPwdPrefixTpl>
+                <i nz-icon nzType="lock" nzTheme="outline"></i>
+            </ng-template>
+            <ng-template #confirmPwdTemplate>
+                <i nz-icon  class="pointer" [nzType]="confirmPwdVisible ? 'eye-invisible' : 'eye'" (click)="confirmPwdVisible = !confirmPwdVisible"></i>
+            </ng-template>
+            <ng-template #confirmPasswordErrorTipTpl let-control>
+                <ng-container *ngIf="confirmPassword.hasError('required')">
+                    请输入确认密码！
+                </ng-container>
+                <ng-container *ngIf="confirmPassword.hasError('validateEqual')">
+                    确认密码与新密码不符！
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-control [nzErrorTip]="codeErrorTipTpl">
+            <div nz-row [nzGutter]="8">
+                <div nz-col [nzSpan]="12">
+                    <input nz-input formControlName="code" id="code" placeholder="验证码">
+                </div>
+                <div nz-col [nzSpan]="12" class="text-right">
+                    <button nz-button [nzType]="codeType" [disabled]="codeDisabled" (click)="getCode(security)">{{codeDesc}}</button>
+                </div>
+            </div>
+            <ng-template #codeErrorTipTpl>
+                <ng-container *ngIf="code.hasError('required')">
+                    请填写验证码！
+                </ng-container>
+                <ng-container *ngIf="code.hasError('code')">
+                    {{form.get('code').errors['code']}}
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+    <ng-template #security>
+        <nz-form-item>
+            <nz-form-control>
+                <div nz-row>
+                    <div nz-col [nzSpan]="12">
+                        <img *ngIf="imgSrc" [src]="imgSrc" alt="" (click)="getCaptchaToken()">
+                    </div>
+                    <div nz-col [nzSpan]="12" class="text-right picture-code">
+                        点击图片更换验证码
+                    </div>
+                </div>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control [nzErrorTip]="captchaCodeErrorTipTpl">
+                <nz-input-group nzSize="large" [nzPrefix]="captureCodePrefixTpl">
+                    <input nz-input type="text" formControlName="captchaCode"  placeholder="请输入图片验证码">
+                </nz-input-group>
+                <ng-template #captureCodePrefixTpl>
+                    <i nz-icon nzType="picture" nzTheme="outline"></i>
+                </ng-template>
+                <ng-template #captchaCodeErrorTipTpl let-control>
+                    <ng-container *ngIf="captchaCode.hasError('required')">
+                        请输入图片验证码！
+                    </ng-container>
+                </ng-template>
+            </nz-form-control>
+        </nz-form-item>
+    </ng-template>
+    <nz-form-item>
+        <button nz-button type="submit" nzType="primary" nzBlock nzSize="large" [nzLoading]="loading" (click)="submit()">提交</button>
+    </nz-form-item>
+</form>

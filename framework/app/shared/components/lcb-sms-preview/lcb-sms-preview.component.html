@@ -1,0 +1,15 @@
+<div class="phoneArea">
+    <div>
+        <ng-container *ngIf="smsContentList&&smsContentList.length>0; else elseTemplate">
+            <div *ngFor="let item of smsContentList;let idx = index">
+                <p class="smsContenItem">
+                    <ng-container *ngIf="idx === 0">【{{groupName}}】</ng-container>{{item}}<ng-container
+                        *ngIf="idx === smsContentList.length - 1"> 退订回TD</ng-container>
+                </p>
+            </div>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <div class="smsContenItem">【{{groupName}}】 退订回TD</div>
+        </ng-template>
+    </div>
+</div>

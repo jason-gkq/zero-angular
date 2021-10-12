@@ -1,0 +1,62 @@
+<nz-upload [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUpload" [nzListType]="'picture'">
+    <button nz-button nzType="default" style="margin-bottom: 15px">
+        <span>上传图片</span>
+    </button>
+</nz-upload>
+<div nz-row class="img-cropper-container" [ngClass]="{'is-round': isRound}">
+    <div #cropperContainer nz-col nzSpan="15" class="img-to-crop">
+    </div>
+
+    <div nz-col nzSpan="8" nzPush="1" class="previewContainer">
+        <!-- <div #cropperPreviewer class="img-cropper-previewer">
+            </div> -->
+        <p class="margin-b-0">预览：</p>
+        <div class="preview"></div>
+        <div class="previewBg"></div>
+    </div>
+
+    <div nz-col nzSpan="24" *ngIf="cropperControls">
+        <div class="img-cropper-controls">
+            <form nz-form *ngIf="imgToCrop" nzLayout="inline">
+                <nz-form-item>
+                    <nz-form-label>宽</nz-form-label>
+                    <nz-form-control>
+                        <input type="text" [disabled]="!boxResizable" nz-input name="cropBoxWidth"
+                            [(ngModel)]="_cropBoxWidth" (ngModelChange)="handleCropBoxResize($event, 'width')">
+                    </nz-form-control>
+                </nz-form-item>
+
+                <nz-form-item>
+                    <nz-form-label>高</nz-form-label>
+                    <nz-form-control>
+                        <input type="text" [disabled]="!boxResizable" nz-input name="cropBoxHeight"
+                            [(ngModel)]="_cropBoxHeight" (ngModelChange)="handleCropBoxResize($event, 'height')">
+                    </nz-form-control>
+                </nz-form-item>
+
+                <!-- <nz-form-item>
+                        <nz-form-label [nzSpan]="12">形状</nz-form-label>
+                        <nz-form-control [nzSpan]="12">
+                            <nz-radio-group *ngIf="!shapeOnly" name="isRound" [(ngModel)]="isRound">
+                                <label nz-radio [nzValue]="true">圆形</label>
+                                <label nz-radio [nzValue]="false">矩形</label>
+                            </nz-radio-group>
+                            <ng-container *ngIf="shapeOnly">
+                                <span *ngIf="isRound;else shapeElseBlock">
+                                    圆形
+                                </span>
+                                <ng-template #shapeElseBlock>矩形</ng-template>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item> -->
+
+                <nz-form-item>
+                    <nz-form-control>
+                        <button nz-button nzType="primary" [disabled]="isCropBtnDisabled()"
+                            (click)="toCrop()">剪切</button>
+                    </nz-form-control>
+                </nz-form-item>
+            </form>
+        </div>
+    </div>
+</div>

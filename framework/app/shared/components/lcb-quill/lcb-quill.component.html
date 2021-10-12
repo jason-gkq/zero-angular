@@ -1,0 +1,7 @@
+<div style="position:relative">
+    <div [id]="id" [ngStyle]="{'height': contentHeight+'px'}"></div>
+    <div *ngIf="maxLength && editor" style="position:absolute;bottom: 12px; right: 15px;color: #999999">
+        {{editor?.getText()?.length-1}}/{{maxLength}}
+    </div>
+    <input style="display: none" id="selectImg" type="file" accept="image/jpg,image/jpeg,image/png,image/gif" (change)="selectedImg($event)">
+</div>

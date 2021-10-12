@@ -1,0 +1,64 @@
+<div class="top-nav-wrap theme-a">
+    <ul class="top-nav">
+        <!-- Menu -->
+        <li>
+            <div class="item" (click)="toggleCollapsedSidebar()">
+                <i nz-icon nzType="menu-{{settings.layout.collapsed ? 'unfold' : 'fold'}}" nzTheme="outline"></i>
+            </div>
+        </li>
+        <!-- Search Button -->
+        <li class="header-search__btn" (click)="searchToggleChange()" >
+            <div class="item">
+                <i nz-icon nzType="search" nzTheme="outline"></i>
+            </div>
+        </li>
+    </ul>
+    <header-search class="header-search" *ngIf="settings.layout.headerSearch" [toggleChange]="searchToggleStatus"></header-search>
+    <ul class="top-nav">
+        <!-- help center -->
+        <li *ngIf="settings.layout.headerHelpCenter">
+            <a style="color:rgba(0, 0, 0, 0.65);" (click)="routerService.goTo('/common/helpSystem/home')">帮助中心  <i nz-icon nzType="question-circle" nzTheme="outline"></i></a>
+        </li>
+        <nz-divider  *ngIf="settings.layout.headerHelpCenter" [nzType]="'vertical'"></nz-divider>
+        <!-- Notify -->
+        <li *ngIf="settings.layout.headerNotify">
+            <header-notify></header-notify>
+        </li>
+        <nz-divider [nzType]="'vertical'" *ngIf="settings.layout.headerNotify"></nz-divider>
+        <!-- Settings -->
+        <li class="hidden-xs" *ngIf="settings.layout.headerSetting">
+            <div class="item" nz-dropdown nzTrigger="click" nzPlacement="bottomRight" [nzDropdownMenu]="menuTpl">
+                <i nz-icon nzType="setting" nzTheme="outline"></i>
+            </div>
+            <nz-dropdown-menu #menuTpl="nzDropdownMenu">
+                <ul nz-menu>
+                    <li nz-menu-item>
+                        <header-fullscreen></header-fullscreen>
+                    </li>
+                    <li nz-menu-item>
+                        <header-i18n></header-i18n>
+                    </li>
+                </ul>
+            </nz-dropdown-menu>
+        </li>
+        <!-- 后台客服 -->
+        <li class="hidden-xs" *ngIf="settings.layout.isHeaderUdesk">
+            <background-service></background-service>
+        </li>
+        <nz-divider [nzType]="'vertical'" *ngIf="settings.layout.isHeaderUdesk"></nz-divider>
+        <!-- 店铺切换-->
+        <li class="hidden-xs" *ngIf="settings.layout.storeSwitch">
+            <store-switch></store-switch>
+        </li>
+        <nz-divider [nzType]="'vertical'" *ngIf="settings.layout.storeSwitch"></nz-divider>
+        <!-- 查看下载 -->
+        <li class="hidden-xs" >
+            <check-download></check-download>
+        </li>
+        <nz-divider [nzType]="'vertical'"></nz-divider>
+        <!-- 用户信息 -->
+        <li class="hidden-xs" class="themeA-header-dropdown">
+            <header-user></header-user>
+        </li>
+    </ul>
+</div>

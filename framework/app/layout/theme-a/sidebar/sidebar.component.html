@@ -1,0 +1,9 @@
+<div class="aside-inner">
+    <div class="logo" [ngClass]="{'collapsed-logo': settings.layout.collapsed}">
+        <a [routerLink]="['/']">
+            <img *ngIf="!settings.layout.collapsed" src="./assets/img/{{env.manufacturer}}-logo/logo-menu.png" alt="{{settings.app.name}}"/>
+            <img *ngIf="settings.layout.collapsed" src="./assets/img/{{env.manufacturer}}-logo/logo-collapsed.png" alt="{{settings.app.name}}"/>
+        </a>
+    </div>
+    <sidebar-menu class="d-block py-lg" [menuTheme]="'dark'"></sidebar-menu>
+</div>

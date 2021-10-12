@@ -1,0 +1,77 @@
+<div class="car-picker">
+    <nz-skeleton [nzActive]="true" *ngIf="isBaseDataInitPending"></nz-skeleton>
+    <nz-alert *ngIf="!isBaseDataInitPending && !isBaseDataReauestSuccess" nzType="error" nzMessage="Error"
+        nzDescription="数据获取失败，请稍后重试！" nzShowIcon>
+    </nz-alert>
+    <div class="picker-container" *ngIf="!isBaseDataInitPending && isBaseDataReauestSuccess">
+        <div class="tree-picker">
+            <!-- 衍生工具不展示搜索功能 -->
+            <ng-container *ngIf="businessOption?.type!='derive'">
+                <nz-input-group [nzPrefix]="searchIcon" [nzSuffix]="searchSuffixTemplate" class="search-input">
+                    <input type="text" nz-input [(ngModel)]="searchValue" placeholder="搜索品牌/厂商/车系(至少2个字符)"
+                        (ngModelChange)="handleSearch($event)">
+                </nz-input-group>
+                <ng-template #searchIcon>
+                    <i nz-icon nzType="search" nzTheme="outline"></i>
+                </ng-template>
+                <ng-template #searchSuffixTemplate>
+                    <i nz-icon nzType="loading" nzTheme="outline" *ngIf="isSearching"></i>
+                </ng-template>
+                <!-- <ng-container *ngIf="carSeries?.brandList && carSeries?.brandList?.length > 0">
+                    品牌
+                    <div class="car-list" *ngFor="let item of carSeries?.brandList">
+                        <span>{{item.fullName}}</span>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="carSeries?.manufacturerList && carSeries?.manufacturerList?.length > 0">
+                    厂商
+                    <ng-container *ngFor="let item of carSeries?.manufacturerList">
+                        <div class="car-list" *ngFor="let item of item.next">
+                            <span>{{item.fullName}}</span>
+                        </div>
+                    </ng-container>
+                </ng-container>
+                <ng-container *ngIf="carSeries?.seriesList && carSeries?.seriesList?.length > 0">
+                    车系
+                    <ng-container *ngFor="let item of carSeries?.seriesList">
+                        <ng-container *ngFor="let item of item?.next">
+                            <div class="car-list" *ngFor="let item of item?.next">
+                                <span>{{item.fullName}}</span>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </ng-container> -->
+            </ng-container>
+            <ng-container *ngIf="carTreeNodes&&carTreeNodes.length > 0; else elseTemplate">
+                <nz-tree #carTypeTreeComponent [nzCheckable]="displayConfig?.selectLevel?false:true"
+                    [nzCheckStrictly]="true" [nzData]="carTreeNodes" [nzAsyncData]="true"
+                    (nzCheckBoxChange)="handleTreeCheckboxChange($event, 'isChecked')"
+                    (nzClick)="handleTreeCheckboxChange($event, 'isSelected')"
+                    (nzExpandChange)="handleTreeExpand($event)" [nzMultiple]="!displayConfig.singleSelection">
+                    <ng-template *ngIf="businessOption?.type=='derive'" #nzTreeTemplate let-node>
+                        {{node.title}}<nz-tag style="margin-left: 10px;"
+                            *ngIf="node.origin.optionValue==0||node.origin.optionValue==2">
+                            {{node.origin.optionValue==0?'不可装':'标品'}}</nz-tag>
+                    </ng-template>
+                </nz-tree>
+            </ng-container>
+            <ng-template #elseTemplate>
+                <div class="text-center">暂无数据</div>
+            </ng-template>
+
+
+        </div>
+        <nz-divider nzType="vertical" style="height: auto; margin: 0 24px;"></nz-divider>
+        <div class="picked-result">
+            <div class="title">已选择的</div>
+            <div class="picked-list">
+                <div class="item" *ngFor="let car of carSelectedList">
+                    <span class="text">{{car.name}}</span>
+                    <span class="icon" (click)="deleteCarSelected(car.id)">
+                        <i nz-icon nzType="close" nzTheme="outline"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

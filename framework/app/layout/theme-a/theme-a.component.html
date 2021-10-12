@@ -1,0 +1,17 @@
+<nz-layout style="height: 100%" class="theme-a">
+    <nz-sider nzCollapsible  [nzTrigger]="triggerTemplate" [class.collapsed-sider]="settings.layout.collapsed">
+        <app-themeA-sidebar></app-themeA-sidebar>
+    </nz-sider>
+    <nz-layout style="margin-left: 200px" [class.collapsed-header-margin]="settings.layout.collapsed">
+        <nz-header style="z-index: 10">
+            <app-themeA-header></app-themeA-header>
+        </nz-header>
+        <nz-content>
+            <section class="content">
+                <!--<reuse-tab></reuse-tab>-->
+                <router-outlet></router-outlet>
+            </section>
+            <!-- <nz-footer class="text-center">Copyright © 2018 by 乐车邦. All Rights Reserved.</nz-footer> -->
+        </nz-content>
+    </nz-layout>
+</nz-layout>

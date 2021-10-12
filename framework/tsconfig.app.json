@@ -1,0 +1,19 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../out-tsc/app",
+        "baseUrl": "./",
+        "types": [
+            "node",
+            "jasmine"
+        ],
+        "experimentalDecorators": true
+    },
+    "exclude": [
+        "test.ts",
+        "**/*.spec.ts"
+    ],
+    "angularCompilerOptions": {
+        "enableIvy": false
+    }
+}

@@ -1,0 +1,41 @@
+<ng-container *ngIf="!_options.isIcon;else iconBlock">
+    <ng-container *ngFor="let opt1 of options1;let i = index">
+        <a *ngIf="opt1.url; else elseBlock" (click)="goTo(opt1)">{{opt1.name}}
+        </a>
+        <ng-template #elseBlock>
+            <a *ngIf="opt1.event" (click)="activeEvt(opt1.event)">{{opt1.name}}
+            </a>
+        </ng-template>
+        <nz-divider nzType="vertical" *ngIf="i < options1.length-1 || options2.length > 0"></nz-divider>
+    </ng-container>
+    <a nz-dropdown [nzDropdownMenu]="menu" *ngIf="options2.length > 0">
+        更多<i nz-icon nzType="down"></i>
+    </a>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu nzSelectable>
+            <li nz-menu-item *ngFor="let opt2 of options2">
+                <a *ngIf="opt2.url; else elseBlock" (click)="goTo(opt2)">{{opt2.name}}</a>
+                <ng-template #elseBlock>
+                    <a (click)="activeEvt(opt2.event)">{{opt2.name}}</a>
+                </ng-template>
+            </li>
+        </ul>
+    </nz-dropdown-menu>
+</ng-container>
+<ng-template #iconBlock>
+    <ng-container *ngFor="let item of optList">
+        <ng-container *ngIf="item.url; else elseBlock">
+            <a class="a-icon" *ngIf="item.isModuleUrl" [routerLink]="[item.url[0]]" [queryParams]="item.url[1]">
+                <i *ngIf="item.icon" nz-icon nzType="{{item.icon}}" nz-tooltip [nzTooltipTitle]="item.name"></i>
+            </a>
+            <a class="a-icon" *ngIf="!item.isModuleUrl" (click)="goTo(item)">
+                <i *ngIf="item.icon" nz-icon nzType="{{item.icon}}" nz-tooltip [nzTooltipTitle]="item.name"></i>
+            </a>
+        </ng-container>
+        <ng-template #elseBlock>
+            <a class="a-icon" *ngIf="item.event" (click)="activeEvt(item.event)">
+                <i *ngIf="item.icon" nz-icon nzType="{{item.icon}}" nz-tooltip [nzTooltipTitle]="item.name"></i>
+            </a>
+        </ng-template>
+    </ng-container>
+</ng-template>

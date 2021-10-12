@@ -1,0 +1,75 @@
+:host ::ng-deep .trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color .3s;
+}
+
+:host ::ng-deep .trigger:hover {
+    color: #1890ff;
+}
+
+// :host ::ng-deep .logo {
+//     height: 32px;
+//     background: rgba(255, 255, 255, .2);
+//     margin: 16px;
+// }
+
+::-webkit-scrollbar
+{
+    width: 5px;
+    height: 5px;
+    background-color: #F5F5F5;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+.collapsed-sider {
+    max-width: 64px!important;
+    min-width: 64px!important;
+    width: 64px!important;
+}
+.collapsed-header-margin {
+    margin-left: 64px!important;
+    transition: all 0.2s;
+}
+
+reuse-tab {
+    transition: left .2s;
+}
+
+nz-sider {
+    overflow: auto;
+    height: 100%;
+    position: fixed;
+    left: 0;
+}
+nz-header {
+    padding:0;
+    background: #ffffff;
+    border-bottom: 1px solid #e8e8e8;
+}
+nz-content {
+    overflow: auto;
+}
+.content {
+    margin: 0 16px 16px;
+}
+
+
+
